@@ -4,8 +4,11 @@ import re
 from tkinter import *
 from tkinter import filedialog
 
+# GUI
 root = Tk()
 root.title("Converter to PDF")
+
+
 # To sort files to stay at the same order
 numbers = re.compile(r'(\d+)')
 def numericalSort(value):
@@ -13,13 +16,14 @@ def numericalSort(value):
     parts[1::2] = map(int, parts[1::2])
     return parts
 
+
 in_file = ""
 out_file = ""
 def process():
     os.chdir(in_file)
     lst = os.listdir()
     lst = sorted(lst, key=numericalSort)
-    print(lst)
+
     counter = 1
     for i in lst:
         print(i)
@@ -28,9 +32,8 @@ def process():
         out = out_file + "\\" + str(counter) + ".pdf"
         im1.save(out)
         counter += 1
-
-# for i in range(1,54):
-#     print("H:\\university\\ZEClub\\Team\\cert\\"+str(i)+".pdf")
+    for i in range(1,counter):
+        print(out_file+ "/"+str(i)+".pdf")
 
 def main():
     def getInDir():
